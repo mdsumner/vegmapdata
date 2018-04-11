@@ -11,4 +11,16 @@ The basic idea is to have the data frame of fields, and a nicely compressed GeoT
 
 TODO
 
-rerun the script to put the UTM zone CRS on properly, the GeoTIFF is currently un-crs ready because I read the geometry on its own. (Use "+init=epsg:32755").
+rerun the script to put the UTM zone CRS on properly, the GeoTIFF is currently un-crs ready because I read the geometry on its own. (Use "+init=epsg:32755"). How to use?
+
+pseudocode:
+
+``` r
+r <- raster(rasterfile)
+d <- readRDS(datafile)
+
+ids <- raster::extract(r, mypts)
+
+## data attributes
+mytps$vegcode <- d[ids, c("VEGCODE"), drop = FALSE]
+```
